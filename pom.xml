@@ -36,6 +36,11 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.30</version>
+    </dependency>
+    <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-hibernate-orm-rest-data-panache</artifactId>
     </dependency>
@@ -44,8 +49,8 @@
       <artifactId>quarkus-resteasy-reactive-jackson</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.datastax.oss.quarkus</groupId>
-      <artifactId>cassandra-quarkus-client</artifactId>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-jdbc-postgresql</artifactId>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
