@@ -25,7 +25,9 @@ public class Shelter {
     @Embedded
     private Location location;
 
+    @Column(name = "added_by")
     private String addedBy;
+    @Column(name = "added_date")
     private LocalDate addedDate;
     private boolean approved;
     @Override
