@@ -1,5 +1,6 @@
 package com.kramti.service;
 
+import com.kramti.config.AppConfig;
 import com.kramti.dto.ErrorDto;
 import com.kramti.entity.Shelter;
 import com.kramti.repository.ShelterRepository;
@@ -39,8 +40,8 @@ public class ShelterService {
         }
         Shelter dbShelter = this.shelterRepository.findById(shelter.getId());
         if (dbShelter == null){
-            return Response.status(Response.Status.BAD_REQUEST)
-                    .entity(new ErrorDto("Shelter not found"))
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity(new ErrorDto(AppConfig.SHELTER_NOT_FOUND_MESSAGE))
                     .build();
         }
         dbShelter.setApproved(shelter.isApproved());
@@ -68,6 +69,25 @@ public class ShelterService {
         this.shelterRepository.deleteById(id);
         return Response
                 .noContent()
+                .build();
+    }
+
+    public Response listApproved() {
+        return Response
+                .ok(this.shelterRepository.list("approved", true))
+                .build();
+    }
+
+    public Response findById(long id) {
+        Shelter shelter = this.shelterRepository.findById(id);
+        if (shelter == null){
+            return Response
+                    .status(Response.Status.NOT_FOUND)
+                    .entity(new ErrorDto(AppConfig.SHELTER_NOT_FOUND_MESSAGE))
+                    .build();
+        }
+        return Response
+                .ok(shelter)
                 .build();
     }
 }

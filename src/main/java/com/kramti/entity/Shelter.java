@@ -1,6 +1,9 @@
 package com.kramti.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +22,10 @@ public class Shelter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull(message = "Name is null")
+    @Pattern(regexp = "[a-zA-z ]{3,64}")
     private String name;
+    @Size(max = 2, message = "Description too long")
     private String description;
     private int capacity;
     @Embedded
