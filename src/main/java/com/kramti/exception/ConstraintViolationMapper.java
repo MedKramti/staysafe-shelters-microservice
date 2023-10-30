@@ -1,4 +1,4 @@
-package com.kramti.validation;
+package com.kramti.exception;
 
 import com.kramti.dto.ErrorDto;
 import jakarta.validation.ConstraintViolation;
