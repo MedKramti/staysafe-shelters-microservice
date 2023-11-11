@@ -25,17 +25,19 @@ public class Shelter {
     @NotNull(message = "Name is null")
     @Pattern(regexp = "[a-zA-z ]{3,64}")
     private String name;
-    @Size(max = 2, message = "Description too long")
+    @Size(max = 256, message = "Description too long")
     private String description;
     private int capacity;
-    @Embedded
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "location_id", referencedColumnName = "id")
     private Location location;
 
     @Column(name = "added_by")
     private String addedBy;
     @Column(name = "added_date")
     private LocalDate addedDate;
-    private boolean approved;
+    private Boolean approved;
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

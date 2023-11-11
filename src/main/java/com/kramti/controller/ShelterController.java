@@ -22,6 +22,14 @@ public class ShelterController {
     }
 
     @GET
+    @Path("/pending-approval")
+    @RolesAllowed("admin")
+    @PermitAll
+    public Response getPending(){
+        return this.shelterService.listPendingApproval();
+    }
+
+    @GET
     @PermitAll
     public Response getApprovedShelter(){
         return this.shelterService.listApproved();
@@ -34,7 +42,7 @@ public class ShelterController {
     }
 
     @POST
-    @RolesAllowed("admin")
+    @RolesAllowed({"user", "admin"})
     public Response post(@Valid Shelter shelter) {
         return this.shelterService.add(shelter);
     }
@@ -49,6 +57,13 @@ public class ShelterController {
     @RolesAllowed("admin")
     public Response delete(@PathParam("id") Long id){
         return this.shelterService.delete(id);
+    }
+
+    @PUT
+    @Path("/approve")
+    @RolesAllowed("admin")
+    public Response approve(Shelter shelter) {
+        return this.shelterService.approve(shelter);
     }
 
 }

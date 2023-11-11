@@ -1,0 +1,16 @@
+# Example of application.properties file
+# Make the change and rename the file (to application.properties)
+quarkus.datasource.db-kind=postgresql
+quarkus.datasource.jdbc.url=jdbc:postgresql://localhost:5432/staysafe_shelters
+quarkus.datasource.username=
+quarkus.datasource.password=
+quarkus.http.port = 8080
+# JWT
+mp.jwt.verify.publickey.location=
+mp.jwt.verify.issuer=https://kramti.com/
+
+quarkus.native.resources.includes=
+
+## Cors
+quarkus.http.cors=true
+quarkus.http.cors.origins=http://localhost:4200

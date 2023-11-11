@@ -1,14 +1,20 @@
 package com.kramti.entity;
 
-import jakarta.persistence.Embeddable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@Embeddable
+@Getter
+@Setter
+@Entity
+@Table(name = "locations")
 public class Location {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Double lng;
     private Double lat;
     @Size(max = 128, message = "Street too long")
@@ -22,4 +28,8 @@ public class Location {
 
     @Size(max = 56, message = "Country name too long")
     private String country;
+
+    @OneToOne(mappedBy = "location")
+    @JsonIgnore
+    private Shelter shelter;
 }
